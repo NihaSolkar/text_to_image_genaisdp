@@ -1,0 +1,18 @@
+# ipython-input-1-d594dc751ed8
+import torch  # Add this import to fix the NameError
+from diffusers import StableDiffusionPipeline
+import os
+
+# Set your Hugging Face authentication token
+os.environ["HF_AUTH_TOKEN"] = "your_auth_token_here"
+
+# Load the model
+pipe = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4", use_auth_token=os.getenv("HF_AUTH_TOKEN"))
+
+# Move the model to GPU if available, otherwise use CPU
+pipe.to("cuda" if torch.cuda.is_available() else "cpu")
+
+
+print(f"Pipeline is on {pipe.device}") # Moved the print statement to the cell where 'pipe' is defined
+
+print(f"Pipeline is on {pipe.device}")
